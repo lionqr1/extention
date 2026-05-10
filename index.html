@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LionQR</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0d0d0d;
+      color: white;
+      text-align: center;
+    }
+
+    header {
+      padding: 20px;
+      background: #111;
+      font-size: 24px;
+      font-weight: bold;
+      border-bottom: 2px solid #222;
+    }
+
+    .container {
+      margin-top: 40px;
+    }
+
+    input, button {
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: none;
+      margin: 6px;
+    }
+
+    input {
+      width: 260px;
+    }
+
+    button {
+      background: #ffcc00;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #ffdd33;
+    }
+
+    img {
+      margin-top: 20px;
+      border: 4px solid #fff;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<header>LionQR Generator</header>
+
+<div class="container">
+  <h2>Create a QR Code</h2>
+
+  <input id="text" type="text" placeholder="Enter text or URL">
+
+  <br>
+
+  <button onclick="generateQR()">Generate</button>
+
+  <div id="output"></div>
+</div>
+
+<script>
+  function generateQR() {
+    const text = document.getElementById('text').value;
+    const output = document.getElementById('output');
+
+    if (!text.trim()) {
+      output.innerHTML = "<p>Please enter something first.</p>";
+      return;
+    }
+
+    const url = 
+      `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(text)}`;
+
+    output.innerHTML = `<img src="${url}" alt="QR Code">`;
+  }
+</script>
+
+</body>
+</html>
